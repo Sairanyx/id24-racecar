@@ -56,7 +56,7 @@ gh pr create
 Branch naming: `feat/` for new work, `fix/` for bug fixes, `docs/` for
 documentation.
 
-### I guess a good it idea would be:
+### I guess a good idea would be:
 
 1. **Not commit directly to `main`.**
 2. **Not commit video, datasets or model weights.** They live in shared (not sure where, maybe R&D Insight lab pc?)
