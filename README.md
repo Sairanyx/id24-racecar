@@ -7,30 +7,32 @@ relative to the track boundaries.
 **Processing is offline.** Cameras record to disk and analysis is run afterwards.
 Nothing needs to happen in real time, at least version 1.
 
-## Pipeline
+## Start here
 
-```
-video → detect car → convert pixels to floor metres → merge 4 cameras
-      → compare against track map → penalty score
-```
+**[docs/PLAN.md](docs/PLAN.md)** - how the system works, the pipeline diagram,
+the week-by-week plan, and what we still need to decide.
 
-I think only the detection stage uses machine learning. Position conversion is
-geometry and the penalty rules are hardcoded so every decision can
-be explained.
-
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detail.
+[docs/OPEN_QUESTIONS.md](docs/OPEN_QUESTIONS.md) - running list of unknowns.
 
 ## Development environment
 
 - **Ubuntu 26.04 LTS** (via WSL2 on Windows)
 - Python 3.x  ?
 
+```bash
+git clone https://github.com/Sairanyx/id24-racecar.git
+cd id24-racecar
+```
+
+Keep the repository in the Linux filesystem (`~/dev/id24-racecar`), not under
+`/mnt/c/`. Git is several times slower across the Windows bridge.
+
 ## Repository layout
 
 ```
 configs/     YAML configuration - cameras, track geometry, penalty rules
 data/        Recordings and derived data (NOT tracked by git)
-docs/        Architecture, calibration notes, open questions
+docs/        Plan and open questions
 notebooks/   Exploration only - never part of the pipeline
 scripts/     Command-line entry points
 src/id24/    Source code, one package per pipeline stage
@@ -42,7 +44,6 @@ tests/       Tests
 `main` is protected. All I think should go through a branch and a pull request. Some ideas:
 
 ```bash
-git clone ""
 git checkout main
 git pull
 git checkout -b feat/my-thing
