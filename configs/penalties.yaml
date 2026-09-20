@@ -1,0 +1,57 @@
+# This is just a generated template to get an idea.
+#
+#
+# Penalty rules.
+#
+# Values are placeholders taken from the initial discussion and are not
+# yet confirmed. Because processing is offline, changing anything here and
+# re-scoring every recording takes minutes - so tune freely.
+#
+# All distances are in metres.
+
+version: 1
+
+rules:
+  # Penalty that grows with distance from the centre line.
+  centre_line_deviation:
+    enabled: true
+    type: continuous
+    # Penalty applied per metre of deviation.
+    penalty_per_metre: -10
+    # No penalty within this distance of the centre line.
+    deadband_metres: 0.0
+
+  # The car's edge touches a track boundary.
+  boundary_touch:
+    enabled: true
+    type: discrete
+    penalty: -50
+
+  # The car crosses fully outside a boundary.
+  boundary_cross:
+    enabled: true
+    type: discrete
+    penalty: -100
+
+# How discrete events are counted.
+events:
+  # Charge once per event rather than once per frame. At 30 fps a two
+  # second excursion is 60 frames, which would otherwise be scored 60 times.
+  mode: per_event
+
+  # Hysteresis: prevents a car sitting on the boundary from registering
+  # many separate events. An event ends only once the car is back inside
+  # by this margin for at least this long.
+  exit_margin_metres: 0.02
+  min_clear_seconds: 0.5
+
+# How a lap score is produced from individual penalties.
+scoring:
+  # sum | worst | mean
+  method: sum
+
+# Car dimensions. "Touching the boundary" refers to the car's edge, not
+# its centre point, so these are required.
+car:
+  width_metres: null     # TODO: measure
+  length_metres: null    # TODO: measure

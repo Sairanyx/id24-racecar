@@ -1,0 +1,122 @@
+# This is just a generated template to get an idea.
+#
+#
+# Camera configuration and calibration results.
+#
+# Hardware details are unknown until the cameras are installed. Fill in as
+# we learn them.
+#
+# Two calibrations per camera, produced by scripts in src/id24/calibration:
+#
+#   intrinsics  - lens distortion, from a ChArUco board. Done once per
+#                 camera, valid until the lens or zoom changes.
+#   homography  - 3x3 matrix mapping undistorted image pixels to floor
+#                 coordinates in metres. Must be redone if the camera moves
+#                 even slightly.
+
+version: 1
+
+# Shared floor coordinate system. Every camera's homography maps into this,
+# and the track geometry in track.yaml uses the same frame.
+world:
+  units: metres
+  origin_description: "TODO: define a physical reference point in the room"
+  # Looking down from above, +x and +y directions relative to the origin.
+  x_axis_description: "TODO"
+  y_axis_description: "TODO"
+
+defaults:
+  resolution: [null, null]    # [width, height] in pixels
+  fps: null
+  # Fix exposure and white balance if the cameras allow it. Automatic
+  # adjustment mid-session changes the image in ways that hurt both
+  # detection and calibration.
+  manual_exposure: true
+  manual_white_balance: true
+
+cameras:
+  - id: cam1
+    enabled: true
+    # Connection: rtsp url, or a device path such as /dev/video0
+    source: null
+    mount_description: "TODO: which beam, roughly where"
+    # Angle from vertical. 0 is straight down. Smaller is better - oblique
+    # angles amplify the height projection error.
+    mount_angle_degrees: null
+    intrinsics:
+      calibrated: false
+      camera_matrix: null
+      distortion_coefficients: null
+      reprojection_error: null
+    homography:
+      calibrated: false
+      matrix: null
+      # Points used to compute it, for reproducibility.
+      image_points: null
+      world_points: null
+      mean_error_metres: null
+
+  - id: cam2
+    enabled: true
+    source: null
+    mount_description: "TODO"
+    mount_angle_degrees: null
+    intrinsics:
+      calibrated: false
+      camera_matrix: null
+      distortion_coefficients: null
+      reprojection_error: null
+    homography:
+      calibrated: false
+      matrix: null
+      image_points: null
+      world_points: null
+      mean_error_metres: null
+
+  - id: cam3
+    enabled: true
+    source: null
+    mount_description: "TODO"
+    mount_angle_degrees: null
+    intrinsics:
+      calibrated: false
+      camera_matrix: null
+      distortion_coefficients: null
+      reprojection_error: null
+    homography:
+      calibrated: false
+      matrix: null
+      image_points: null
+      world_points: null
+      mean_error_metres: null
+
+  - id: cam4
+    enabled: true
+    source: null
+    mount_description: "TODO"
+    mount_angle_degrees: null
+    intrinsics:
+      calibrated: false
+      camera_matrix: null
+      distortion_coefficients: null
+      reprojection_error: null
+    homography:
+      calibrated: false
+      matrix: null
+      image_points: null
+      world_points: null
+      mean_error_metres: null
+
+# Clock synchronisation between cameras.
+#
+# Required precision is modest: a car at 2 m/s moves 2 cm in 10 ms, so
+# roughly 25 ms of alignment gives about 5 cm of positional agreement.
+# NTP over the lab LAN typically achieves 3-5 ms, which is comfortably
+# sufficient.
+sync:
+  method: ntp
+  target_accuracy_ms: 25
+  # Record something all four cameras can see at the start of every
+  # session - a flash, a clap, or the car crossing a marked line - so
+  # alignment can be verified afterwards rather than assumed.
+  physical_sync_marker: true

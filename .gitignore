@@ -1,0 +1,34 @@
+# Data
+data/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.HEIC
+
+# Models
+*.pt
+*.pth
+*.onnx
+runs/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secrets
+.env

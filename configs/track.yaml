@@ -1,0 +1,51 @@
+# This is just a generated template to get an idea.
+#
+# Track geometry.
+#
+# The track does not move, so this is measured once by hand rather than
+# detected by a model.
+#
+# All coordinates are [x, y] in metres, in the same world frame defined in
+# cameras.yaml. Boundaries are closed loops: the last point connects back
+# to the first, so do not repeat the first point at the end.
+#
+# How to produce these:
+#   1. Measure a handful of reference points on the floor with a tape
+#      measure and record them here as the world points for the homography.
+#   2. Click along the track edges in one undistorted camera image and
+#      convert those pixels to metres using that camera's homography.
+#   3. Spot check a few of the resulting coordinates with the tape measure.
+
+version: 1
+layout_id: layout_A
+units: metres
+
+# Outer edge of the drivable area.
+outer_boundary: []
+  # - [0.00, 0.00]
+  # - [3.20, 0.00]
+  # - [3.20, 2.40]
+  # - [0.00, 2.40]
+
+# Inner edge. For a loop track this is the island in the middle.
+inner_boundary: []
+  # - [0.40, 0.40]
+  # - [2.80, 0.40]
+  # - [2.80, 2.00]
+  # - [0.40, 2.00]
+
+# Midway between the two boundaries. Can be computed from them rather than
+# measured separately, but is stored here so scoring does not depend on
+# that computation being repeated identically.
+centre_line: []
+
+# Optional: where a lap begins and ends, as a line segment the car crosses.
+start_finish_line:
+  from: null
+  to: null
+
+# Optional: named sections, useful for reporting where penalties occur.
+sections: []
+  # - name: turn_1
+  #   from_index: 0
+  #   to_index: 12
