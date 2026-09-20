@@ -1,6 +1,8 @@
-# Data
-data/*
+# Data we aim to keep the folders in git and not their contents
+data/**
+!data/raw/
 !data/raw/.gitkeep
+!data/processed/
 !data/processed/.gitkeep
 *.mp4
 *.avi
