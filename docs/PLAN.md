@@ -17,8 +17,9 @@ something concrete to argue with.
 10. [Plan from here](#10-plan-from-here)
 11. [The biggest open question](#11-the-biggest-open-question-can-we-mark-the-car)
 12. [Two things we cannot fix later](#12-two-things-we-cannot-fix-later)
-13. [Suggested roles](#13-suggested-roles)
-14. [Questions for tomorrow](#14-questions-for-tomorrow)
+13. [The car](#13-the-car)
+14. [Suggested roles](#14-suggested-roles)
+15. [Questions for tomorrow](#15-questions-for-tomorrow)
 
 ---
 
@@ -524,7 +525,46 @@ section 5. The error grows with the angle and software cannot undo it.
 
 ---
 
-## 13. Suggested roles
+## 13. The car
+
+We have two Tamiya TT-02R (1/10 scale, 4WD), both driving as of week 2.
+One of them also has a Raspberry Pi 5 with a camera on it, which nothing
+is using at the moment.
+
+How it works right now: you hold the controller, it sends radio to a
+receiver in the car, and the receiver drives two things - a servo that
+turns the front wheels, and a speed controller that feeds power to the
+motor. That is the whole system. It is one way only, the car never sends
+anything back.
+
+So for now this is just our base demo. We can drive it around a track and
+film it, which is all we need for the camera side of the project.
+
+### Getting data off the car later
+
+I think we could do this but it means adding something, since there are
+no sensors on the car to read from.
+
+The receiver puts out a standard signal for steering and throttle (a
+pulse between 1100 and 1900 microseconds, 1500 is centre). We could split
+each of those so the signal still goes to the servo and speed controller
+as normal, but also goes to the Raspberry Pi, which times the pulses and
+writes them to a file with timestamps. The car would drive exactly the
+same, we would just be listening in.
+
+One thing to watch: the signal is about 6V and the Pi only takes 3.3V, so
+it needs a voltage divider or we kill the Pi.
+
+Nice to have, not needed for the penalty system - that gets position from
+the ceiling cameras. It is a second data stream that has to join onto a
+trajectory we do not have yet, so it makes more sense once the demo
+works. Maybe a day of work and a few resistors at that point.
+
+Worth asking Amin if he expects this, he mentioned it early on.
+
+---
+
+## 14. Suggested roles
 
 | Area | Scope |
 |------|-------|
@@ -540,7 +580,7 @@ penalties are just quietly incorrect, and it is very hard to notice later.
 
 ---
 
-## 14. Questions for tomorrow
+## 15. Questions for tomorrow
 
 **Cameras - the blocking ones**
 

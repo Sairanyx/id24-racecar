@@ -35,7 +35,12 @@ Two requirements that cannot be fixed in software later:
 ## Track
 
 - [ ] Final track layout and dimensions
-- [ ] Physical width of the car (needed for "touching the boundary")
+- [ ] Remeasure the car properly - length, body width, wheel-to-wheel
+      width, and height off the floor. Rough numbers are in
+      `configs/penalties.yaml` and roughly match the Tamiya spec, but the
+      wheel width decides when a boundary penalty triggers so it should
+      be measured accurately. Wheel spacing is adjustable, so recheck if
+      anyone changes the setup.
 - [ ] Where is the coordinate origin? Which direction is +x?
 
 ## Team decisions

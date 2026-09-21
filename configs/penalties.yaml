@@ -50,8 +50,13 @@ scoring:
   # sum | worst | mean
   method: sum
 
-# Car dimensions. "Touching the boundary" refers to the car's edge, not
-# its centre point, so these are required.
+# Car dimensions. Boundary contact is the car's edge, not its centre.
+# TODO: remeasure properly. Wheel spacing is adjustable, so recheck if
+# anyone changes the setup.
 car:
-  width_metres: null     # TODO: measure
-  length_metres: null    # TODO: measure
+  length_metres: 0.38         # incl. rear wing?
+  body_width_metres: 0.14
+  track_width_metres: 0.185   # outer wheel to outer wheel
+
+  # Wheels are wider than the body and are what touch the floor.
+  contact_width: track_width_metres
