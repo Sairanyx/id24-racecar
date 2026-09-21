@@ -557,7 +557,6 @@ penalties are just quietly incorrect, and it is very hard to notice later.
    system with good geometry acceptable?
 3. Is AGPL licensing a problem?
 4. Car telemetry - what does it send, how, how often?
-5. What do E1-E3 / T1-T4 on the blackboard mean?
 
 **For us to decide**
 
